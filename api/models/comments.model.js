@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const { connection } = require('../../database')
 
-const Comments = sequelize.define(
+const Comments = connection.define(
   'comments',
   {
     title: {
