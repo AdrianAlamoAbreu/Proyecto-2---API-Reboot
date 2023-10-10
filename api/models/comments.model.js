@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize')
-const { sequelize } = require('../../database')
+const { connection } = require('../../database')
 
 const Comments = sequelize.define(
   'comments',
