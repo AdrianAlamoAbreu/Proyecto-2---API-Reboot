@@ -29,9 +29,10 @@ POST   | /books              | YES   | admin | Create book entry       | `Title�
 PUT    | /books/:bookId      | YES   | admin | Update one book         | `Title´, `Author´, `genre´, `pages´, `publish_date´, `publisher´, `genre´  | {book}
 DELETE | /books/:bookId      | YES   | admin | Delete one book         | `bookId´                                                                   | {message: 'Book deleted'}
 GET    | /books/:bookId      | YES   | user  | Get a book              | `bookId´                                                                   | {book}
-GET    | /books/:title       | YES   | user  | Get a book by title     | `title´                                                                    | {book}
-GET    | /books/:publisherId | YES   | user  | Get books by publisher  | `publisherId´                                                              | {book}
-GET    | /books/:genre       | YES   | user  | Get a books by genre    | `bookgenre´                                                                | {book}
+GET    | /books              | YES   | user  | Get all books           |                                                                            | {book}
+GET    | /books              | YES   | user  | Get a book              | `bookId´                                                                   | {book}
+GET    | /books              | YES   | user  | Get an specific kind of book| `query params´                                                         | {book}
+
 
 ### Publisher Endpoints
 
@@ -40,6 +41,8 @@ METHOD | ENDPOINT                | TOKEN | ROLE  | DESCRIPTION             | POS
 POST   | /publisher              | YES   | admin | Create a publisher      | `Name´, `Country´, `fundation_Date´    | { publisher }  
 PUT    | /publisher/:publisherId | YES   | admin | Create a publisher      | `Name´, `Country´, `fundation_Date´    | { publisher }   
 DELETE | /publisher/:publisherId | YES   | admin | Delete a publisher      | `publisherId´                          | {message: 'Publisher deleted'}
+GET    | /publisher              | YES   | user  | Get all publishers      |                                        | { publisher }
+GET    | /publisher/publisherId  | YES   | user  | Get a publisher         | `publisherId´                          | { publisher }
 
 ### ReadList Endpoints
 
@@ -61,3 +64,5 @@ PUT    | /comment/:commentId/like     | YES   | user | Like one comment         
 GET    | /comment/:bookId/all         | YES   | user | Get all comments from a book  |                                        | [{comment}]
 PUT    | /comment/:profile/commentId  | YES   | user | update a comment              | `commentId´, `title´, `body´, `rating´ | [{comment}]
 DELETE | /comment/:profile/commentId  | YES   | user | delete a comment              | `commentId´                            | [{comment}]
+PUT    | /comment/:commentId          | YES   | admin| update a comment              | `commentId´, `title´, `body´, `rating´ | [{comment}]
+DELETE | /comment/:commentId          | YES   | admin| delete a comment              | `commentId´                            | [{comment}]
