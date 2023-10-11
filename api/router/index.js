@@ -8,7 +8,7 @@ const commentsRouter = require('./comments.router')
 router 
     .use('/auth', authRouter)
 //    .use('/user', userRouter)
-//    .use('/books', bookRouter)
+    .use('/books', bookRouter)
     .use('/comment', commentsRouter)
 
 module.exports = router
