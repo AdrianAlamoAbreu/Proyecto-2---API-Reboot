@@ -3,13 +3,13 @@ const { connection } = require('../../database/index')
 
 
 const Book = connection.define ('books', {
-    Title: {
+    title: {
         type: DataTypes.STRING,
         unique: false,
         allowNull: false,
         require: true
     },
-    Author: {
+    author: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
@@ -56,7 +56,7 @@ const Book = connection.define ('books', {
         unique: false
     }
 }, {
-    timestamps: false
+    updateAt: false
 })
 
 module.exports = Book
