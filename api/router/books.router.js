@@ -11,7 +11,7 @@ const {
     createBook,
     updateBook,
     deleteBook
-} = require('../controllers/user.controller')
+} = require('../controllers/books.controller')
 
 router
     .get('/', getAllBooks)
