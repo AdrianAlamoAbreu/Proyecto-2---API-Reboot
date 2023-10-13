@@ -8,12 +8,19 @@ function addRelations() {
     User.hasMany(Comments)
     Comments.belongsTo(User)
 
-    Comments.hasMany(Book)
-    Book.belongsTo(Comments)
+    Book.hasMany(Comments)
+    Comments.belongsTo(Book)
 
     Publisher.hasMany(Book)
     Book.belongsTo(Publisher)
 
+    User.hasOne(Pending_list)
+    Pending_list.belongsTo(User)
+
+    Book.hasMany(Pending_list)
+    Pending_list.belongsTo(Book)
+
+    
 
 
     
