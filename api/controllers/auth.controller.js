@@ -3,7 +3,7 @@ const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const singup = async (req, res) => {
+const signup = async (req, res) => {
     try {
         const salt = bcrypt.genSaltSync(parseInt(process.env.BCRYPT_ROUNDS))
         req.body.password = bcrypt.hashSync(req.body.password, salt)
