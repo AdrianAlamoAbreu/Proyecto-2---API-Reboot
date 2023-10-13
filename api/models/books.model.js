@@ -32,7 +32,7 @@ const Book = connection.define ('books', {
         unique: false,
         allowNull: false
     },
-    publisher: {
+    the_publisher: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
