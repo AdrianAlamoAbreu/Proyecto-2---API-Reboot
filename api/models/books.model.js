@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes, INTEGER } = require('sequelize')
 const { connection } = require('../../database/index')
 
 
@@ -51,7 +51,7 @@ const Book = connection.define ('books', {
         require: true
     }, 
     user_rating: {
-        type: INTERGER,
+        type: INTEGER,
         allowNull: false,
         unique: false
     }
