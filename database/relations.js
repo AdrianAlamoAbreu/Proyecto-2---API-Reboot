@@ -26,7 +26,7 @@ function addRelations() {
     
     console.log('Relations added')
   } catch (error) {
-    throw new Error (error)
+    throw  Error (error)
   }
 }
 
