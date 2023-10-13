@@ -18,7 +18,7 @@ const getAllBooks = async (req, res) => {
 
 const getOneBook = async (req, res) => {
     try {
-        const book = await Books.findByPs(req.params.name)            
+        const book = await Books.findByPk(req.params.name)            
         if (!book) {
         return res.status(404).send('Book not found')}
         return res.status(200).json(book)
