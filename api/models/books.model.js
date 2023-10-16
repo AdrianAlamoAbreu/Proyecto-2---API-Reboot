@@ -51,7 +51,7 @@ const Book = connection.define ('books', {
         require: true
     }, 
     user_rating: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         unique: false
     }

@@ -1,5 +1,5 @@
 require('dotenv').config()
-console.log(process.env)
+
 const express = require('express')
 const morgan = require('morgan')
 
@@ -24,8 +24,9 @@ async function checkDB () {
     addRelations()
     await syncModels ()
 }
-
-;(async function startAPI () {
+async function startAPI () {
     await checkDB()
     startExpress()
-}) ()
+} 
+
+startAPI()

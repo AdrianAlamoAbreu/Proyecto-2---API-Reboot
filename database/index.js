@@ -1,8 +1,12 @@
 const { Sequelize } = require('sequelize')
 
+require('dotenv').config();
+
 const connection = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
+  password: process.env.DB_PASSWORD,
+ 
   logging: false
 })
 
@@ -17,11 +21,10 @@ const checkConnection = async () => {
 
 const syncModels = async () => {
     try {
-        await connection.sync()
+        await connection.sync('force')
         console.log("Models Synched")
     } catch (error) {
-        throw error
-        console.log("El error está en la función Sync Models")
+      console.error("El error está en la función Sync Models")
     }
 }
 
