@@ -19,12 +19,13 @@ const checkConnection = async () => {
     }
   }
 
-const syncModels = async () => {
+  const syncModels = async () => {
     try {
         await connection.sync()
         console.log("Models Synched")
     } catch (error) {
-      console.error("El error está en la función Sync Models")
+        throw error
+        console.log("El error está en la función Sync Models")
     }
 }
 
