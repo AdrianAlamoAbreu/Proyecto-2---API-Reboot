@@ -18,7 +18,7 @@ const getAllBooks = async (req, res) => {
 
 const getOneBook = async (req, res) => {
     try {
-        const book = await Books.findByPk(req.params.name)            
+        const book = await Book.findByPk(req.params.bookId)            
         if (!book) {
         return res.status(404).send('Book not found')}
         return res.status(200).json(book)
@@ -30,19 +30,17 @@ const getOneBook = async (req, res) => {
 
 const createBook = async (req, res) => {
     try {
-        const saltRounds = bcrypt.genSaltSync(parseInt(process.env.BCRYPT_ROUNDS))
-        const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
-        req.body.password =  hashedPassword
-
-        const book = await Book.create({
+       
+          const book = await Book.create({
           title: req.body.title,  
           author: req.body.author,
           genre: req.body.genre,
           pages: req.body.pages,
           published_date: req.body.published_date,
-          publisher: req.body.publisher,
+          the_publisher: req.body.the_publisher,
           price: req.body.price,
-          language: req.body.language
+          language: req.body.language,
+          user_rating: req.body.user_rating
         })
 
         res.status(200).json(book)

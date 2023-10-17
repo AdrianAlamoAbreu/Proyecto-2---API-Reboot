@@ -15,7 +15,7 @@ const {
 
 router
     .get('/', getAllBooks)
-    .get('/:name', getOneBook)
+    .get('/:bookId', getOneBook)
     .post('/', checkAuth, checkAdmin, createBook)
     .put('/:bookId', checkAuth, checkAdmin, updateBook)
     .delete('/:bookId', checkAuth, checkAdmin, deleteBook)
