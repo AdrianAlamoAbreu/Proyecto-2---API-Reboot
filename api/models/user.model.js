@@ -31,13 +31,13 @@ const User = connection.define('user', {
         require: true
     },
     number_phone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     birth_date: {
         type: DataTypes.DATE,
     }    
   },{
-    updatedAt: false
+    timestamps: false
   })
 
   module.exports = User
