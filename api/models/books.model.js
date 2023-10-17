@@ -39,7 +39,9 @@ const Book = connection.define ('books', {
         require: true
     },
     price: {
-        type: DataTypes.FLOAT (10, 2),
+
+        type: DataTypes.FLOAT(10, 2),
+
         unique: false,
         allowNull: false,
         require: true
@@ -51,7 +53,9 @@ const Book = connection.define ('books', {
         require: true
     }, 
     user_rating: {
-        type: DataTypes.FLOAT (10, 2),
+
+        type: DataTypes.FLOAT(10, 2),
+
         allowNull: false,
         unique: false
     }
