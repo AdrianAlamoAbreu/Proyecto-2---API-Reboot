@@ -1,11 +1,22 @@
 const router = require('express').Router()
 
-const { getAllComments, getOneComment, createComment, updateComment, deleteComment } = require('../controllers/comments.controller')
+const {
+    checkAuth,
+    checkAdmin
+  } = require('../utils/middlewares')
 
-router.get('/', getAllComments)
-router.get('/:id', getOneComment)
-router.post('/', createComment)
-router.put('/:id', updateComment)
-router.delete('/:id', deleteComment)
+const { 
+    getAllComments, 
+    getOneComment, 
+    createComment, 
+    updateComment, 
+    deleteComment 
+} = require('../controllers/comments.controller')
+
+router.get('/', checkAuth, getAllComments)
+router.get('/:commentId', checkAuth, getOneComment)
+router.post('/', checkAuth, createComment)
+router.put('/:commentId', checkAuth, updateComment)
+router.delete('/:commentId', checkAuth, deleteComment)
 
 module.exports = router

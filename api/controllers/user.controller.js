@@ -1,4 +1,4 @@
-const Comments = require('../models/comments.model')
+const Comment = require('../models/comments.model')
 const User = require('../models/user.model')
 
 const bcrypt = require('bcrypt')
@@ -44,7 +44,7 @@ const getAllUsers = async (req, res) => {
         },
         include: [
             {
-              model: Comments,
+              model: Comment,
               as: 'comments'
             }
         ]

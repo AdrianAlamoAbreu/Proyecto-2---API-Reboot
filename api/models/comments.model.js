@@ -1,9 +1,7 @@
 const { DataTypes } = require('sequelize')
-const { connection } = require('../../database')
+const { connection } = require('../../database/index')
 
-const Comments = connection.define(
-  'comments',
-  {
+const Comment = connection.define('comments', {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,11 +12,11 @@ const Comments = connection.define(
       require: true,
     },
     rating: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT(10, 2),
       require: true,
     }
-  },
-  { updateAt: false }
-)
+  },{
+    timestamps: false
+  })
 
-module.exports = Comments
+module.exports = Comment

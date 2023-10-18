@@ -39,7 +39,9 @@ const Book = connection.define ('books', {
         require: true
     },
     price: {
-        type: DataTypes.DECIMAL,
+
+        type: DataTypes.FLOAT(10, 2),
+
         unique: false,
         allowNull: false,
         require: true
@@ -51,12 +53,14 @@ const Book = connection.define ('books', {
         require: true
     }, 
     user_rating: {
-        type: INTEGER,
+
+        type: DataTypes.FLOAT(10, 2),
+
         allowNull: false,
         unique: false
     }
 }, {
-    updateAt: false
+    timestamps: false
 })
 
 module.exports = Book
