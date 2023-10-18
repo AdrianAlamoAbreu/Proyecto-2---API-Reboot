@@ -1,5 +1,5 @@
 require('dotenv').config()
-console.log(process.env)
+
 const express = require('express')
 const morgan = require('morgan')
 
@@ -7,12 +7,12 @@ const { checkConnection, syncModels } = require ('./database/index.js')
 
 const addRelations = require('./database/relations.js')
 
-function starExpress () {
+function startExpress () {
   const app = express()
   .use(morgan('dev'))
   .use(express.json())
 
-  .use('/api', require('./api/routes'))
+  .use('/api', require('./api/router'))
 
   .listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`)
@@ -22,10 +22,11 @@ function starExpress () {
 async function checkDB () {
     await checkConnection()
     addRelations()
-    await syncModels ()
+    await syncModels ('alter')
 }
-
-;(async function startAPI () {
+async function startAPI () {
     await checkDB()
     startExpress()
-}) ()
+} 
+
+startAPI()

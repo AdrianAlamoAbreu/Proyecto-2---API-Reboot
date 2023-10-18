@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes, INTEGER } = require('sequelize')
 const { connection } = require('../../database/index')
 
 
@@ -32,14 +32,16 @@ const Book = connection.define ('books', {
         unique: false,
         allowNull: false
     },
-    publisher: {
+    the_publisher: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: false,
         require: true
     },
     price: {
-        type: DataTypes.DECIMAL,
+
+        type: DataTypes.FLOAT(10, 2),
+
         unique: false,
         allowNull: false,
         require: true
@@ -51,12 +53,14 @@ const Book = connection.define ('books', {
         require: true
     }, 
     user_rating: {
-        type: INTERGER,
+
+        type: DataTypes.FLOAT(10, 2),
+
         allowNull: false,
         unique: false
     }
 }, {
-    updateAt: false
+    timestamps: false
 })
 
 module.exports = Book

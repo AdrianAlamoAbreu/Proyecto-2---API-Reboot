@@ -3,7 +3,7 @@ const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const singup = async (req, res) => {
+const signup = async (req, res) => {
     try {
         const salt = bcrypt.genSaltSync(parseInt(process.env.BCRYPT_ROUNDS))
         req.body.password = bcrypt.hashSync(req.body.password, salt)
@@ -42,11 +42,12 @@ const login = async (req, res) => {
         if (checkPass) {
             const payload = { email: req.body.email }
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '8h' })
-            return res.satus(200).json({ token })
+            return res.status(200).json({ token })
         } else {
             return res.status(404).send('Email or password incorrect')
         }
     } catch (error) {
+        console.log(error.message)
         console.log('Error in log in')
         return res.status(500).json(error)
     }

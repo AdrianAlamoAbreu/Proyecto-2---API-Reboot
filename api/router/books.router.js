@@ -11,11 +11,11 @@ const {
     createBook,
     updateBook,
     deleteBook
-} = require('../controllers/user.controller')
+} = require('../controllers/books.controller')
 
 router
     .get('/', getAllBooks)
-    .get('/:name', getOneBook)
+    .get('/:bookId', getOneBook)
     .post('/', checkAuth, checkAdmin, createBook)
     .put('/:bookId', checkAuth, checkAdmin, updateBook)
     .delete('/:bookId', checkAuth, checkAdmin, deleteBook)
