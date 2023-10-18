@@ -18,7 +18,7 @@ const Comments = connection.define(
       require: true,
     }
   },
-  { updateAt: false }
+  { createdAt: false }
 )
 
 module.exports = Comments

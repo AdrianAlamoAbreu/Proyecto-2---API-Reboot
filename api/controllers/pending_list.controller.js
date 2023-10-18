@@ -1,4 +1,5 @@
 const Pending_list = require('../models/pending_list.model')
+const User = require('../models/user.model')
 
 
 const jwt = require('jsonwebtoken')
@@ -20,7 +21,7 @@ const getAllPendingBook = async (req, res) => {
   
   const getOnePendingBook = async (req, res) => {
     try {
-      const pending = await Pending_list.findByPk(req.body.pendingId, {
+      const pending = await Pending_list.findByPk(req.param.id, {
         include: [
             {
               model: books,
@@ -31,7 +32,7 @@ const getAllPendingBook = async (req, res) => {
       if (!pending) {
         return res.status(404).send('Book not found')
       }
-      return res.status(200).json(pending)
+      return res.status(200).json({pending})
     } catch (error) {
       console.log('Error getting one book')
       return res.status(500).json(error)
@@ -42,11 +43,13 @@ const getAllPendingBook = async (req, res) => {
     try {
       
         const pending = await Pending_list.create({
-            where: {
-                bookId: req.body.bookId
-              }
+          bookPending: req.body.title
       })  
-      res.status(200).json(pending)
+
+      const user = await User.findByPk(req.param.id)
+      await pending.setUser(user)
+
+      return res.status(200).json({message: 'Pending book created:', pending})
     } catch (error) {
       console.log('Error creating Book')
       return res.status(500).json(error)

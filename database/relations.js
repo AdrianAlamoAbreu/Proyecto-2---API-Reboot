@@ -6,6 +6,7 @@ const Pending_list = require('../api/models/pending_list.model')
 
 function addRelations() {
   try {
+    //One to Many
     User.hasMany(Comments)
     Comments.belongsTo(User)
 
@@ -15,11 +16,13 @@ function addRelations() {
     Publisher.hasMany(Book)
     Book.belongsTo(Publisher)
 
+    //One to one
     User.hasOne(Pending_list)
     Pending_list.belongsTo(User)
 
-    Pending_list.belongsToMany(Book, {through: 'List_books'})
-    Book.belongsToMany(Pending_list, {through: 'List_books'})
+    //Many to Many
+    Pending_list.belongsToMany(Book, {through: 'List_books', timestamps: false})
+    Book.belongsToMany(Pending_list, {through: 'List_books' ,timestamps: false})
 
 
     

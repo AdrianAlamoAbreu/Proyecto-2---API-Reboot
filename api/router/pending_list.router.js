@@ -14,7 +14,7 @@ const {
 
 router.get('/', checkAuth, getAllPendingBook)
 router.get('/pendingId', checkAuth, getOnePendingBook)
-router.post('/', checkAuth, createPendingBook)
+router.post('/:id', checkAuth, createPendingBook)
 router.delete('/pendingId', checkAuth, deletePendingBook)
 
 module.exports = router

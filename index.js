@@ -22,7 +22,7 @@ function startExpress () {
 async function checkDB () {
     await checkConnection()
     addRelations()
-    await syncModels ('alter')
+    await syncModels ()
 }
 async function startAPI () {
     await checkDB()
