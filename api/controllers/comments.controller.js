@@ -1,11 +1,11 @@
-const Comments = require('../models/comments.model')
+const Comment = require('../models/comments.model')
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 
 
 const getAllComments = async (req, res) => {
     try {
-      const comments = await Comments.findAll({
+      const comments = await Comment.findAll({
         where: req.query,
         
       })
@@ -19,9 +19,9 @@ const getAllComments = async (req, res) => {
   
   const getOneComment = async (req, res) => {
     try {
-      const comment = await Comments.findByPk(req.params.commentId, {
-        
-      })  
+      const comment = await Comment.findByPk(req.params.commentId, {
+        attributes: ['id', 'title', 'body', 'rating', 'createdAt', 'updatedAt', 'userId', 'bookId']
+        });     
       if (!comment) {
         return res.status(404).send('Comment not found')
       }
@@ -53,11 +53,13 @@ const getAllComments = async (req, res) => {
     try {
       
         const comment = await Comment.create({
-        title: req.body.title,
-            body: req.body.body,
-            rating: req.body.rating,
+          title: req.body.title,
+          body: req.body.body,
+          rating: req.body.rating,
+          userId: req.body.userId,
+          bookId: req.body.bookId
             
-      })  
+        });
       res.status(200).json(comment)
     } catch (error) {
       console.log('Error creating comment')
@@ -101,7 +103,7 @@ const getAllComments = async (req, res) => {
   
   const deleteComment = async (req, res) => {
     try {
-      const comment = await Comments.destroy({
+      const comment = await Comment.destroy({
         where: {
           id: req.params.commentId
         }

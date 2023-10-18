@@ -28,6 +28,25 @@ const getOneBook = async (req, res) => {
     }
 }
 
+const getUserRating = async (req, res) => {
+    try {
+        const book = await Book.findByPk(req.params.bookId, {
+            attributes: ['user_rating']
+        });
+
+        if (!book) {
+            return res.status(404).send('Book not found');
+        }
+
+        const userRating = book.user_rating;
+        return res.status(200).json({ user_rating: userRating });
+    } catch (error) { 
+        console.log("Error getting user rating");
+        return res.status(500).json(error);
+    }
+};
+
+
 const createBook = async (req, res) => {
     try {
        
@@ -89,5 +108,6 @@ module.exports = {
     getOneBook,
     createBook,
     updateBook,
-    deleteBook
+    deleteBook,
+    getUserRating
 }

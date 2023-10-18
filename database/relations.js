@@ -18,8 +18,8 @@ function addRelations() {
     User.hasOne(Pending_list)
     Pending_list.belongsTo(User)
 
-    Pending_list.belongsToMany(Book, {through: 'List_books'})
-    Book.belongsToMany(Pending_list, {through: 'List_books'})
+    Pending_list.belongsToMany(Book, { through: 'List_books' });
+    Book.belongsToMany(Pending_list, { through: 'List_books' });
 
 
     

@@ -10,14 +10,18 @@ const {
     getOneBook,
     createBook,
     updateBook,
-    deleteBook
+    deleteBook,
+    getUserRating
 } = require('../controllers/books.controller')
 
 router
-    .get('/', getAllBooks)
-    .get('/:bookId', getOneBook)
+    .get('/:bookId', checkAuth, getUserRating)
+    .get('/', getAllBooks)    
+    .get('/:bookId', getOneBook)    
     .post('/', checkAuth, checkAdmin, createBook)
     .put('/:bookId', checkAuth, checkAdmin, updateBook)
     .delete('/:bookId', checkAuth, checkAdmin, deleteBook)
+    
+
 
     module.exports = router

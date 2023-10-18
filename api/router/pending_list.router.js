@@ -9,12 +9,19 @@ const {
     getAllPendingBook,
     getOnePendingBook,
     createPendingBook,
-    deletePendingBook
+    deletePendingBook,
+    getOwnPendingList,
+    updatePendingList
 } = require('../controllers/pending_list.controller')
 
+
 router.get('/', checkAuth, getAllPendingBook)
-router.get('/pendingId', checkAuth, getOnePendingBook)
+router.get('/:pendingId', checkAuth, getOnePendingBook)
+router.get('/pending_list', checkAuth, getOwnPendingList)
 router.post('/', checkAuth, createPendingBook)
-router.delete('/pendingId', checkAuth, deletePendingBook)
+router.put('/pending_list', checkAuth, updatePendingList)
+router.delete('/:pendingId', checkAuth, deletePendingBook)
+
+
 
 module.exports = router
